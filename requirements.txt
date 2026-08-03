@@ -7,3 +7,7 @@ langchain-chroma
 langchain-text-splitters
 python-multipart
 PyJWT==2.8.0
+SQLAlchemy
+psycopg2-binary
+bcrypt
+passlib
