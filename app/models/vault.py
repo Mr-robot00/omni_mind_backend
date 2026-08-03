@@ -10,6 +10,6 @@ class DBVaultItem(Base):
     title = Column(String, index=True)
     secret_content = Column(String)
 
-    user_id = Column(Integer, ForeignKey("user.id" , ondelete='CASCADE'))
+    user_id = Column(Integer, ForeignKey("users.id" , ondelete='CASCADE'))
     owner = relationship("DBUser", back_populates= "vault_items")
 
