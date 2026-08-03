@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from app.core.database import Base
+from sqlalchemy.orm import relationship
 
 class DBUser(Base):
     __tablename__ = "users"
@@ -8,3 +9,4 @@ class DBUser(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String) 
     is_active = Column(Boolean, default=True)
+    vault_items = relationship("DBVaultItem", back_populates="owner")

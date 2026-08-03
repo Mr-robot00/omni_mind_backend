@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import bcrypt
 from app.core.database import engine, Base
-from app.api.routes import auth, users
+from app.api.routes import auth, users, vault
 from sqlalchemy import create_engine, Column, Integer, String, Boolean
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from passlib.context import CryptContext
@@ -19,6 +19,7 @@ from langchain_core.documents import Document
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from app.models.user import DBUser 
+from app.models.vault import DBVaultItem
 load_dotenv()
 
 app = FastAPI(title="OmniMind API")
@@ -151,3 +152,4 @@ Base.metadata.create_all(bind=engine)
 
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(users.router, prefix="/api/v1/users", tags=["Users"])
+app.include_router(vault.router, prefix="/api/v1/vault", tags=["Vault"])
