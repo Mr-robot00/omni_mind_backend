@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-dotenv
+langchain-google-genai
+langchain-core
+langchain-chroma
+langchain-text-splitters
+python-multipart
