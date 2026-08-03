@@ -6,3 +6,4 @@ langchain-core
 langchain-chroma
 langchain-text-splitters
 python-multipart
+PyJWT==2.8.0
