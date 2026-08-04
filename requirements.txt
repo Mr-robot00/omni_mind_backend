@@ -11,3 +11,6 @@ SQLAlchemy
 psycopg2-binary
 bcrypt
 passlib
+alembic
+langchain-pinecone
+pinecone-client

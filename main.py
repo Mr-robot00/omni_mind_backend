@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import bcrypt
 from app.core.database import engine, Base
-from app.api.routes import auth, users, vault
+from app.api.routes import auth, users, vault,chat
 from sqlalchemy import create_engine, Column, Integer, String, Boolean
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from passlib.context import CryptContext
@@ -34,7 +34,7 @@ app.add_middleware(
 # ---------------------
 
 # Create database tables
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
 # # --- AI CORE SETUP ---  
 
 # # 1. The Brain (Generation)
@@ -153,3 +153,4 @@ Base.metadata.create_all(bind=engine)
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
 app.include_router(users.router, prefix="/api/v1/users", tags=["Users"])
 app.include_router(vault.router, prefix="/api/v1/vault", tags=["Vault"])
+app.include_router(chat.router, prefix="/api/v1/ai", tags=["AI"])
