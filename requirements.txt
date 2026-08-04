@@ -14,3 +14,4 @@ passlib
 alembic
 langchain-pinecone
 pinecone-client
+PyPDF2
