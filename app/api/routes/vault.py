@@ -1,5 +1,5 @@
 from ast import List
-from fastapi import APIRouter, Depends, BackgroundTasks,UploadFile,File,HTTPException,status
+from fastapi import APIRouter, Depends, BackgroundTasks,UploadFile,File,HTTPException,status,WebSocket,WebSocketDisconnect
 import io
 import PyPDF2
 from sqlalchemy.orm import Session
@@ -7,9 +7,12 @@ from app.core.database import get_db
 from app.models.vault import DBVaultItem
 from app.models.user import DBUser
 from app.schemas.vault import VaultItemResponse, VaultItemCreate
+from app.core.security import SECRET_KEY, ALGORITHM
+from langchain_core.messages import SystemMessage, HumanMessage
 
+import jwt
 from app.api.routes.users import get_current_user
-from app.gen_ai import vector_store
+from app.gen_ai import vector_store,llm
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import uuid
@@ -183,6 +186,7 @@ async def upload_vault_file(
         "message": f"File {file.filename} accepted. Processing in background.",
         "vault_id": db_item.id
     }
+
 def delete_vector_item_background(user_id: int, title: str):
     """
     Deletes all vectors from Pinecone that match the user_id and the title.
@@ -233,4 +237,5 @@ def delete_vault_item(
         "status": "success",
         "message": f"Item '{title_to_delete}' has been permanently deleted from the Vault and AI memory."
     }
+
 # ---------------------------
