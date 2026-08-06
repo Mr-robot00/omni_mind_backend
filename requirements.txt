@@ -15,3 +15,5 @@ alembic
 langchain-pinecone
 pinecone-client
 PyPDF2
+celery
+redis

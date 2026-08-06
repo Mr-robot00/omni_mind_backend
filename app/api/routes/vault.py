@@ -9,6 +9,7 @@ from app.models.user import DBUser
 from app.schemas.vault import VaultItemResponse, VaultItemCreate
 from app.core.security import SECRET_KEY, ALGORITHM
 from langchain_core.messages import SystemMessage, HumanMessage
+from app.services.tasks import process_pdf_task
 
 import jwt
 from app.api.routes.users import get_current_user
